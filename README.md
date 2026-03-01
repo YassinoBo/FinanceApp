@@ -1,146 +1,163 @@
-# FinanceApp – Personal Finance Management System
+# 📱 FinanceApp
 
-A modern personal finance management application currently under active development.
+Eine moderne Android Finance-App zur Verwaltung von Konten, Transaktionen, Sparzielen und Abonnements.
 
-> 🚧 Work in Progress – This project is actively being built and continuously extended.
+Dieses Projekt dient der Vertiefung meiner Android- und Kotlin-Kenntnisse. Ziel war es, eine strukturierte, saubere und skalierbare App-Architektur umzusetzen und meine Fähigkeiten im Bereich App-Entwicklung praktisch zu beweisen und weiterzuentwickeln.
 
----
-
-## 📖 Overview
-
-FinanceApp is a structured personal finance management system designed to help users:
-
-- Track income and expenses
-- Categorize financial transactions
-- Monitor budgets
-- Analyze spending behavior
-- Gain better financial transparency
-
-The goal of this project is to design and implement a scalable, maintainable finance application with clean architecture and strong state management principles.
+> 🚧 Das Projekt befindet sich noch in aktiver Entwicklung und wird kontinuierlich erweitert.
 
 ---
 
-## 🎯 Project Goals
+## 🚀 Features
 
-- Build a structured financial tracking system
-- Design scalable data models
-- Implement clean UI/UX principles
-- Focus on maintainable architecture
-- Apply modern frontend engineering best practices
-- Create a realistic portfolio-level application
+### ✅ Grundfunktionen
+- Kontenverwaltung (mehrere Konten möglich)
+- Aktueller Kontostand pro Konto
+- Transaktionen hinzufügen
+- Transaktionen bearbeiten & löschen
+- Transaktionen auflisten
+- Suchfunktion für Transaktionen
+- Kategorienübersicht
+
+### 💰 Sparziele
+- Sparziel erstellen
+- Fortschritt visuell anzeigen
+- Übersicht über aktive Sparziele
+
+### 🔁 Abonnements
+- Abo erstellen
+- Abo-Übersicht in eigenem Tab
+- Bestätigungsmechanismen
+
+### ⭐ Weitere Features
+- Bewertung von Transaktionen
+- Fehlerhandling & Eingabevalidierungen
+- Material3 Design
+- Bottom Navigation
+- Strukturierter Navigation Graph
 
 ---
 
-## 🛠 Tech Stack
+## 🏗️ Architektur & Technologien
 
-*(Adjust if needed)*
+Die App wurde mit modernen Android-Standards entwickelt:
 
-- React
-- Vite
-- JavaScript / TypeScript
-- React Router
-- Context API / State Management
-- CSS / Styling Framework (if applicable)
-- npm
+- **Kotlin**
+- **Jetpack Compose**
+- **Material 3**
+- **Room Database**
+- **KSP**
+- **Coroutines**
+- **MVVM-Architektur**
+- **Clean Package Structure**
+  - `data/`
+  - `domain/`
+  - `ui/`
 
 ---
 
-## 🚀 Getting Started
+## 🧠 Ziel des Projekts
 
-Clone the repository:
+Dieses Projekt wurde erstellt, um:
 
-```bash
-git clone https://github.com/<your-repository-link>
-cd financeapp
+- meine Android-Entwicklung zu vertiefen  
+- Clean Architecture praktisch umzusetzen  
+- den Umgang mit modernen Android-Technologien zu festigen  
+- selbstständig eine vollständige App zu planen und umzusetzen  
+- meine Fähigkeiten für Bewerbungen sichtbar zu machen  
+
+---
+
+## 📂 Projektstruktur
+
+```
+FinanceApp
+│
+├── data
+│   ├── local (Room DB, DAO, Entities)
+│   ├── repository
+│
+├── domain
+│   ├── model
+│   ├── usecase
+│
+├── ui
+│   ├── screens
+│   ├── navigation
+│   ├── components
+│
+└── MainActivity
 ```
 
-Install dependencies:
+---
 
-```bash
-npm install
-```
+## 🔄 Entwicklungsstand
 
-Start development server:
+Aktuell umgesetzt:
 
-```bash
-npm run dev
-```
+- Projektinitialisierung
+- Gradle & Dependencies Setup
+- Navigation Graph
+- Bottom Navigation
+- Theme & Material3 Setup
+- Kontenverwaltung
+- Transaktionsverwaltung (CRUD)
+- Sparziele
+- Abos
+- Suchfunktion
+
+Geplante Erweiterungen:
+
+- Statistiken & Diagramme
+- Cloud-Synchronisierung
+- Export-Funktion (CSV / PDF)
+- Dark Mode Optimierungen
+- UI/UX Verbesserungen
 
 ---
 
-## 🧠 Core Architecture Principles
+## 🧪 Testing
 
-- Component-based architecture
-- Separation of concerns
-- Modular state handling
-- Scalable folder structure
-- Reusable UI components
-- Predictable data flow
+- Manuelle Tests
+- Validierungen für Eingaben
+- Fehlerhandling implementiert
 
-The project is structured to allow future extension without major refactoring.
+Weitere Testabdeckung (Unit Tests / UI Tests) ist geplant.
 
 ---
 
-## 💡 Planned / Implemented Features
+## 📸 Screenshots
 
-### 💰 Transaction Management
-- Add income and expenses
-- Categorization system
-- Editable and deletable entries
-- Persistent storage (planned / implemented)
-
-### 📊 Analytics & Insights
-- Spending overview
-- Category breakdown
-- Budget tracking
-- Monthly comparison view (planned)
-
-### 🧾 Budget System
-- Custom budget limits
-- Over-budget warnings
-- Category-based allocation
-
-### 🔐 User Experience
-- Clean dashboard interface
-- Responsive layout
-- Clear financial visualization
-- Error handling & validation
+*(Werden ergänzt, sobald UI finalisiert ist.)*
 
 ---
 
-## 🏗 Development Focus
+## 🛠️ Installation
 
-This project emphasizes:
+1. Repository klonen:
+   ```
+   git clone <dein-repo-link>
+   ```
 
-- Clean code practices
-- Logical state management
-- Data-driven UI rendering
-- Edge case handling
-- Incremental feature development
-- Real-world scalability mindset
-
----
-
-## 📌 Current Status
-
-The application is actively under development.
-
-New features and structural improvements are continuously being added.  
-This README will be updated as the system evolves.
+2. Projekt in Android Studio öffnen  
+3. Gradle Sync ausführen  
+4. App starten 🚀
 
 ---
 
-## 🎓 Why This Project
+## 📌 Motivation
 
-This project serves as:
-
-- A deep dive into application architecture
-- A structured frontend engineering exercise
-- A portfolio-ready finance management system
-- A practical exploration of scalable UI systems
+Dieses Projekt ist ein persönliches Lern- und Portfolio-Projekt.  
+Es zeigt meine Fähigkeit, eigenständig eine strukturierte Android-App von Grund auf zu planen und umzusetzen.
 
 ---
 
-## 📄 License
+## 👤 Entwickler
 
-This project is currently under personal development.
+**Yassin**
+
+---
+
+## 📄 Lizenz
+
+Dieses Projekt dient ausschließlich Lern- und Demonstrationszwecken.
