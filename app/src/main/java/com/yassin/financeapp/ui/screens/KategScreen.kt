@@ -5,14 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,14 +13,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.yassin.financeapp.R
+import com.yassin.financeapp.ui.components.NumPadDialog
 
 @Composable
 fun KatScreen() {
@@ -40,6 +30,7 @@ fun KatScreen() {
         var selectedIcon by remember { mutableStateOf<String?>(null) } //zeigt Text für Kategorie zum Anzeigen für NumPad-Fenster
         var inputText by remember { mutableStateOf("0€") } //zeigt aktuellen Term/Eingabe im NumPad-Fenster
         var noteText by remember { mutableStateOf("") } //zeigt aktuelle Notiz zu Transaktion an
+        var rating by remember { mutableStateOf(0) } // 0-10
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.fillMaxWidth()
@@ -97,143 +88,18 @@ fun KatScreen() {
         var switch = true
         //NumPad
         if (showDialog) {
-            AlertDialog(
-                onDismissRequest = { showDialog = false },
-                title = {
-                    Column {
-                        Text(selectedIcon.toString())
-
-                        Text(
-                            text = "Ausgabe",
-                            style = TextStyle(
-                                fontSize = 12.sp,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center
-                            ),
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-
-                        BasicTextField(
-                            value = inputText,
-                            onValueChange = {},
-                            readOnly = true,
-                            textStyle = TextStyle(
-                                fontSize = 24.sp,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                        )
-
-                        OutlinedTextField(
-                            value = noteText,
-                            onValueChange = { noteText = it },
-                            placeholder = { Text("Notizen...") }
-                        )
-                    }
-                },
-                text = {
-                    Column {
-                        var numPad: Array<Array<String>> = arrayOf(
-                            arrayOf("/", "7", "8", "9", "<"),
-                            arrayOf("x", "4", "5", "6", ""),
-                            arrayOf("-", "1", "2", "3", ""),
-                            arrayOf("+", "€", "0", ",", "")
-                        )
-                        for (row in numPad.indices) {
-                            Row {
-                                for (col in numPad[row].indices) {
-                                    val value = numPad[row][col]
-
-                                    if (value == "<") {
-                                        Button(
-                                            onClick = {
-                                                if(inputText != "0€"){
-                                                    inputText = if (inputText.length > 1) {
-                                                        inputText.dropLast(1)
-                                                    } else {
-                                                        "0€"
-                                                    }
-                                                }
-
-                                                if(inputText.isEmpty()){
-                                                    inputText = "0€"
-                                                }
-                                            },
-                                            modifier = Modifier.weight(1f)
-                                        ) {
-                                            Text("<")
-                                        }
-                                    } else if (row == 3 && col == 4) {
-                                        Button(
-                                            onClick = {
-                                                if (inputText == "0€") {
-                                                    showDialog = false
-                                                } else {
-                                                    inputText = TR(inputText)
-                                                }
-                                            },
-                                            modifier = Modifier.weight(1f)
-                                        ) {
-                                            if (inputText == "0€" || inputText.toIntOrNull() != null || inputText.isEmpty()) {
-                                                Text("OK")
-                                            } else {
-                                                Text("=")
-                                            }
-                                        }
-                                    } else {
-                                        Button(
-                                            onClick = {
-                                                if (switch) {
-                                                    inputText = ""
-                                                }
-                                                switch = false
-
-                                                val lastChar = "€"
-                                                inputText = inputText.dropLast(1) + value + lastChar
-
-                                            },
-                                            modifier = Modifier.weight(1f)
-                                        ) {
-                                            Text(value)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                confirmButton = {},
+            NumPadDialog(
+                selectedIcon = selectedIcon,
+                inputText = inputText,
+                onInputChange = { inputText = it },
+                noteText = noteText,
+                onNoteChange = { noteText = it },
+                rating = rating,
+                onRatingChange = { rating = it },
+                onDismiss = { showDialog = false }
             )
         }
     }
-}
-
-
-fun TR(input:String): String {
-    val regex = "(?=[+\\-x/])|(?<=[+\\-x/])".toRegex()
-    val parts = input.split(regex)
-    val a = parts[0]
-    val op = parts[1]
-    val b = parts[2]
-    var result = ""
-
-    if(op.equals("+")){
-        result = (a.toInt() + b.dropLast(1).toInt()).toString()
-    }
-    if(op.equals("-")){
-        result = (a.toInt() - b.dropLast(1).toInt()).toString()
-    }
-    if(op.equals("x")){
-        result = (a.toInt() * b.dropLast(1).toInt()).toString()
-    }
-    if(op.equals("/")){
-        result = (a.toInt() / b.dropLast(1).toInt()).toString()
-    }
-    return result + "€"
 }
 
 @Composable

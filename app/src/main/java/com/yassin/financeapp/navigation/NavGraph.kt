@@ -5,14 +5,16 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.yassin.financeapp.ui.screens.KontenScreen
 import com.yassin.financeapp.ui.screens.AboScreen
 import com.yassin.financeapp.ui.screens.KatScreen
+import com.yassin.financeapp.ui.screens.KontenScreen
+import com.yassin.financeapp.ui.screens.NeuKontoScreen
 import com.yassin.financeapp.ui.screens.TransakScreen
 import com.yassin.financeapp.ui.screens.ZieleScreen
 
 sealed class Screen(val route: String) {
     object Konten : Screen("konten")
+    object NeuKonten : Screen("neuKonto")
     object Abos : Screen("abo")
     object Kategorien : Screen("kategorien")
     object Transaktionen : Screen("transaktionen")
@@ -26,10 +28,11 @@ fun AppNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Kategorien.route,
+        startDestination = Screen.Konten.route,
         modifier = modifier
     ) {
-        composable(Screen.Konten.route) { KontenScreen() }
+        composable(Screen.Konten.route) { KontenScreen(navController = navController) }
+        composable(Screen.NeuKonten.route) { NeuKontoScreen(navController = navController) }
         composable(Screen.Abos.route) { AboScreen() }
         composable(Screen.Kategorien.route) { KatScreen() }
         composable(Screen.Transaktionen.route) { TransakScreen() }

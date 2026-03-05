@@ -39,6 +39,8 @@ android {
 }
 
 dependencies {
+    // Sterne
+    implementation("androidx.compose.material:material-icons-extended")
 
     // Android Core
     implementation(libs.androidx.core.ktx)
